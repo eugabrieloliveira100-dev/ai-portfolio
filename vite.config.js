@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: '/ai-portfolio/', // IMPORTANTE: Coloca o nome exato do teu repositório aqui, entre as barras!
+   // IMPORTANTE: Coloca o nome exato do teu repositório aqui, entre as barras!
 })
