@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+body {
+  background-color: #000000;
+  color: #E0E0E0;
+}
+
+/* --- ESTILOS PERSONALIZADOS --- */
+
+/* Ocultar a barra de rolagem dos carrosséis (mas permitindo o scroll) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE e Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+
+/* Animação suave ao abrir a página de um vídeo */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
