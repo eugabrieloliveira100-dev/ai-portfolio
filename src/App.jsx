@@ -10,7 +10,9 @@ import {
   Activity, 
   Globe,
   Sparkles,
-  Coffee // Adicionado o ícone do Café
+  Coffee,
+  ChevronRight, // Novo ícone para o botão Read More
+  BookOpen      // Novo ícone para a leitura
 } from 'lucide-react';
 
 const CATEGORIES = [
@@ -244,9 +246,62 @@ const VIDEOS = [
   }
 ];
 
+// --- PASSO 1: BANCO DE DADOS DO DICIONÁRIO (AGORA COM ARTIGOS COMPLETOS) ---
+const GLOSSARY_TERMS = [
+  {
+    id: 'chiaroscuro',
+    term: 'Chiaroscuro',
+    category: 'Lighting',
+    definition: 'An Italian term meaning "light-dark." In cinematography, it refers to strong contrasts between light and dark to create a sense of volume, dramatic tension, and atmospheric depth.',
+    promptTip: 'Use "extreme chiaroscuro" or "high-contrast chiaroscuro lighting" when you want a moody, dramatic, or horror-like atmosphere.',
+    fullArticle: [
+      "The origin of Chiaroscuro dates back to the Renaissance, pioneered by master painters like Caravaggio and Rembrandt. It is the bold manipulation of light and deep shadows to carve a three-dimensional subject out of a two-dimensional canvas.",
+      "In AI cinematography, standard prompts often result in flat, evenly lit scenes because the models are heavily trained on modern, well-lit stock photography. If you simply type 'a man in a dark room', the AI will often artificially brighten the shadows, destroying the mood.",
+      "To master this technique in AI, you must dictate the shadows as much as you dictate the light. By using prompt keywords like 'extreme chiaroscuro', 'single motivated light source', and 'pitch black negative space', you force the AI engine to respect the darkness. This technique is invaluable for generating thrillers, dark fantasy, and emotionally heavy scenes."
+    ]
+  },
+  {
+    id: 'subsurface-scattering',
+    term: 'Subsurface Scattering (SSS)',
+    category: 'Material & Texture',
+    definition: 'The physical phenomenon where light penetrates the surface of a translucent object, bounces around inside, and exits at a different point. It is what makes human skin, wax, and leaves look realistic instead of like solid plastic.',
+    promptTip: 'Always add "subsurface scattering" alongside "dewy skin" or "visible pores" for hyper-realistic human faces.',
+    fullArticle: [
+      "Subsurface Scattering (often abbreviated as SSS in 3D rendering) is the holy grail of digital human realism. When light hits human skin, it doesn't just bounce off like a mirror. It enters the epidermis, scatters through the blood and tissue, and glows from within. This is most easily seen when holding a flashlight behind your fingers.",
+      "Early AI video models suffered heavily from the 'plastic skin' effect. Subjects looked like mannequins because the AI rendered light as purely reflective. By explicitly prompting 'subsurface scattering', you are giving the AI engine a technical command to simulate this complex light-tissue interaction.",
+      "When combining SSS with environmental modifiers like 'volumetric god rays' hitting the side of a character's face, the AI will generate a beautiful, soft red/orange glow at the edge of the shadows, elevating your character from a synthetic generation to a photorealistic human actor."
+    ]
+  },
+  {
+    id: 'dolly-in',
+    term: 'Dolly-In',
+    category: 'Camera Movement',
+    definition: 'A camera move where the entire camera physically moves closer to the subject. Unlike a zoom (which just magnifies the image and flattens the background), a dolly-in creates a feeling of intimacy, tension, or a sudden realization.',
+    promptTip: 'Specify "slow creeping dolly-in camera shot" to force the AI to smoothly move through the 3D space of the scene.',
+    fullArticle: [
+      "Many AI creators confuse a 'Zoom' with a 'Dolly'. A zoom simply changes the focal length of the lens, magnifying the image. A Dolly-In, however, physically moves the camera through 3D space toward the subject. This changes the perspective and maintains the spatial relationship between the foreground and background.",
+      "In traditional cinema, a slow dolly-in is the universal language for 'pay attention to this'. It is used by directors like Steven Spielberg to signify a character's internal realization, or by horror directors to build excruciating tension.",
+      "When prompting AI video models (like Runway, Sora, or Kling), explicitly writing 'slow dolly-in camera shot' forces the engine to calculate spatial depth. It prevents the AI from simply morphing the image and instead makes it render the background passing by the edges of the frame, resulting in a profoundly cinematic and grounded shot."
+    ]
+  },
+  {
+    id: 'volumetric-lighting',
+    term: 'Volumetric Lighting / God Rays',
+    category: 'Lighting',
+    definition: 'A lighting technique where shafts of light become visible as they shine through an environment, usually interacting with dust, smoke, or fog in the air. Often called "god rays".',
+    promptTip: 'Combine "volumetric lighting" with environmental atmospheric effects like "dust motes" or "atmospheric haze" to give the light a physical presence in the room.',
+    fullArticle: [
+      "Light is invisible until it hits an object. Volumetric lighting exploits this physical rule by filling the air with particulates—dust, smoke, mist, or fog—allowing the camera to capture the actual volume and shape of the light beam.",
+      "Often referred to as 'God Rays' when shining through a window or forest canopy, volumetric lighting adds immense atmospheric depth and a sense of scale to any scene. It separates the subject from the background, creating a 3D feel in a 2D medium.",
+      "To generate this perfectly in AI, never just ask for 'good lighting'. You must construct the environment. Use prompt combinations like: 'cinematic volumetric lighting', 'heavy atmospheric haze', and 'tactile dust motes floating in the light beams'. This gives the AI the environmental context needed to render the air itself."
+    ]
+  }
+];
+
 export default function App() {
   const [currentView, setCurrentView] = useState('home'); 
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedArticle, setSelectedArticle] = useState(null); // Novo estado para o Artigo
   const [copied, setCopied] = useState(false);
   
   // Controle para o vídeo Hero (topo da página inicial)
@@ -281,25 +336,52 @@ export default function App() {
     }
   };
 
+  // Funções de Navegação
+  const handleViewArticle = (article) => {
+    setSelectedArticle(article);
+    setCurrentView('article');
+    window.scrollTo(0, 0);
+  };
+
+  const goGlossary = () => {
+    setCurrentView('glossary');
+    setSelectedArticle(null);
+    window.scrollTo(0, 0);
+  };
+
   const goHome = () => {
     setCurrentView('home');
     setSelectedVideo(null);
+    setSelectedArticle(null);
     setIsPlayingHero(false); 
   };
 
   return (
     <div className="min-h-screen bg-[#000000] text-[#E0E0E0] font-sans selection:bg-[#00D4FF] selection:text-white">
       
-      {/* 1. BOTÃO DO MENU SUPERIOR */}
+      {/* 1. BOTÃO DO MENU SUPERIOR COM O PASSO 2 */}
       <header className="fixed top-0 w-full z-50 bg-[#121212]/90 backdrop-blur-md border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div 
-            className="text-2xl font-bold text-white tracking-wider cursor-pointer flex items-center gap-2"
-            onClick={goHome}
-          >
-            <Play className="w-8 h-8 text-[#00D4FF]" fill="#00D4FF" />
-            <span>AI<span className="text-[#00D4FF]">PROMPTS</span></span>
+          
+          {/* PASSO 2: Logo e Botão Glossary juntos */}
+          <div className="flex items-center gap-8">
+            <div 
+              className="text-2xl font-bold text-white tracking-wider cursor-pointer flex items-center gap-2"
+              onClick={goHome}
+            >
+              <Play className="w-8 h-8 text-[#00D4FF]" fill="#00D4FF" />
+              <span>AI<span className="text-[#00D4FF]">PROMPTS</span></span>
+            </div>
+            
+            {/* NOVO BOTÃO DE GLOSSÁRIO */}
+            <button 
+              onClick={() => { setCurrentView('glossary'); window.scrollTo(0,0); }}
+              className={`hidden md:block text-sm font-bold tracking-widest transition-colors ${currentView === 'glossary' ? 'text-[#00D4FF]' : 'text-gray-400 hover:text-white'}`}
+            >
+              GLOSSARY
+            </button>
           </div>
+
           <a 
             href="https://ko-fi.com/synthvisuals" 
             target="_blank" 
@@ -445,6 +527,112 @@ export default function App() {
                 );
               })}
             </div>
+          </div>
+        )}
+
+        {/* --- GLOSSARY VIEW (PASSO 3) --- */}
+        {currentView === 'glossary' && (
+          <div className="flex-grow max-w-5xl mx-auto px-4 py-8 w-full animate-fade-in">
+            <div className="text-center mb-16 mt-8">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Cinematic <span className="text-[#00D4FF]">Glossary</span></h1>
+              <p className="text-gray-400 text-xl max-w-2xl mx-auto">A technical guide to the vocabulary used to command AI video models. Master the terms, master the engine.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {GLOSSARY_TERMS.map((item) => (
+                <div key={item.id} className="bg-[#121212] border border-gray-800 rounded-xl p-8 shadow-lg hover:border-gray-600 transition-all flex flex-col h-full group">
+                  <div className="flex-grow">
+                    <div className="flex items-start justify-between gap-3 mb-4">
+                      <h2 className="text-2xl font-bold text-white group-hover:text-[#00D4FF] transition-colors">{item.term}</h2>
+                    </div>
+                    <span className="inline-block px-3 py-1 mb-6 bg-gray-900 border border-gray-700 rounded-full text-xs font-semibold text-[#D4AF37]">
+                      {item.category}
+                    </span>
+                    
+                    <p className="text-gray-400 leading-relaxed mb-8 text-base">
+                      {item.definition}
+                    </p>
+                  </div>
+                  
+                  {/* Botão READ FULL ARTICLE na base do Card */}
+                  <div className="pt-6 border-t border-gray-800 mt-auto">
+                    <button 
+                      onClick={() => handleViewArticle(item)}
+                      className="flex items-center gap-2 text-[#00D4FF] hover:text-white text-sm font-bold tracking-widest transition-all hover:translate-x-2 w-fit"
+                    >
+                      READ FULL ARTICLE <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-16 text-center">
+               <button 
+                onClick={goHome}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors font-semibold"
+               >
+                 <ArrowLeft className="w-5 h-5" />
+                 Back to Video Portfolio
+               </button>
+            </div>
+          </div>
+        )}
+
+        {/* --- ARTICLE VIEW (A NOVA PÁGINA DO BLOG) --- */}
+        {currentView === 'article' && selectedArticle && (
+          <div className="flex-grow max-w-4xl mx-auto px-4 py-12 w-full animate-fade-in">
+            <button 
+              onClick={goGlossary}
+              className="flex items-center gap-2 text-gray-400 hover:text-[#00D4FF] mb-10 transition-colors font-semibold tracking-wide"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Back to Glossary
+            </button>
+
+            <article className="bg-[#121212] border border-gray-800 rounded-2xl p-8 md:p-12 shadow-2xl">
+              <header className="mb-10 border-b border-gray-800 pb-10 text-center">
+                <span className="inline-block px-4 py-1.5 mb-6 bg-gray-900 border border-gray-700 rounded-full text-sm font-bold text-[#D4AF37] tracking-widest">
+                  {selectedArticle.category.toUpperCase()}
+                </span>
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                  {selectedArticle.term}
+                </h1>
+                <p className="text-xl text-gray-400 italic font-light max-w-2xl mx-auto">
+                  "{selectedArticle.definition}"
+                </p>
+              </header>
+
+              <div className="prose prose-invert prose-lg max-w-none text-gray-300">
+                {selectedArticle.fullArticle.map((paragraph, index) => (
+                  <p key={index} className="mb-6 leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              <div className="mt-12 bg-black/60 border border-[#00D4FF]/30 rounded-xl p-8 shadow-[0_0_20px_rgba(0,212,255,0.05)]">
+                <h4 className="text-[#00D4FF] text-sm font-bold tracking-widest mb-4 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5" /> ACTIONABLE PROMPT ENGINEERING TIP
+                </h4>
+                <p className="text-gray-300 font-mono text-lg bg-black/50 p-4 rounded-lg border border-gray-800">
+                  {selectedArticle.promptTip}
+                </p>
+              </div>
+
+              <div className="mt-12 pt-8 border-t border-gray-800 text-center flex flex-col items-center justify-center">
+                 <p className="text-gray-500 text-sm mb-4">Did this article help you improve your AI generations?</p>
+                 <a 
+                    href="https://ko-fi.com/synthvisuals" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-[#D4AF37] text-black hover:bg-[#F3CE56] hover:shadow-[0_0_15px_rgba(212,175,55,0.5)] transition-all px-8 py-3 rounded-full font-bold text-lg cursor-pointer"
+                  >
+                    <Coffee className="w-5 h-5" fill="black" />
+                    SUPPORT SYNTHVISUALS
+                  </a>
+              </div>
+            </article>
           </div>
         )}
 
