@@ -3,7 +3,7 @@ import {
   Play, Copy, ArrowLeft, Heart, CheckCircle2, 
   Sparkles, Coffee, ChevronRight
 } from 'lucide-react';
-import { HashRouter, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 
 // AQUI ESTÁ A MÁGICA: Puxar os dados do ficheiro data.js!
 import { CATEGORIES, VIDEOS, GLOSSARY_TERMS } from './data.js';
@@ -20,7 +20,7 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <div className="min-h-screen bg-[#000000] text-[#E0E0E0] font-sans selection:bg-[#00D4FF] selection:text-white flex flex-col">
         
@@ -68,7 +68,7 @@ export default function App() {
           </div>
         </footer>
       </div>
-    </HashRouter>
+   </BrowserRouter>
   );
 }
 
