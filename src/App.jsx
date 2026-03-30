@@ -9,7 +9,8 @@ import {
   Smartphone, 
   Activity, 
   Globe,
-  Sparkles 
+  Sparkles,
+  Coffee // Adicionado o ícone do Café
 } from 'lucide-react';
 
 const CATEGORIES = [
@@ -289,6 +290,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#000000] text-[#E0E0E0] font-sans selection:bg-[#00D4FF] selection:text-white">
       
+      {/* 1. BOTÃO DO MENU SUPERIOR */}
       <header className="fixed top-0 w-full z-50 bg-[#121212]/90 backdrop-blur-md border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div 
@@ -298,10 +300,15 @@ export default function App() {
             <Play className="w-8 h-8 text-[#00D4FF]" fill="#00D4FF" />
             <span>AI<span className="text-[#00D4FF]">PROMPTS</span></span>
           </div>
-          <button className="flex items-center gap-2 bg-transparent border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-colors px-4 py-2 rounded-full font-semibold text-sm">
-            <Heart className="w-4 h-4" />
+          <a 
+            href="https://ko-fi.com/synthvisuals" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="px-4 py-2 border border-yellow-500 text-yellow-500 rounded-full flex items-center gap-2 hover:bg-yellow-500/10 transition-colors cursor-pointer"
+          >
+            <Heart size={18} />
             DONATE
-          </button>
+          </a>
         </div>
       </header>
 
@@ -354,10 +361,18 @@ export default function App() {
                 </p>
                 <div className="flex flex-col items-center justify-center gap-3">
                   <p className="text-sm text-gray-500 italic">Enjoyed the work? Consider supporting the creation of more free content.</p>
-                  <button className="flex items-center gap-2 bg-[#D4AF37] text-black hover:bg-[#F3CE56] hover:shadow-[0_0_15px_rgba(212,175,55,0.5)] transition-all px-8 py-3 rounded-full font-bold text-lg">
-                    <Heart className="w-5 h-5" fill="black" />
+                  
+                  {/* 2. BOTÃO ABAIXO DO VÍDEO PRINCIPAL */}
+                  <a 
+                    href="https://ko-fi.com/synthvisuals" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-[#D4AF37] text-black hover:bg-[#F3CE56] hover:shadow-[0_0_15px_rgba(212,175,55,0.5)] transition-all px-8 py-3 rounded-full font-bold text-lg cursor-pointer mx-auto w-fit"
+                  >
+                    <Coffee className="w-5 h-5" fill="black" />
                     SUPPORT THE CREATOR
-                  </button>
+                  </a>
+
                 </div>
               </div>
             </section>
@@ -497,9 +512,17 @@ export default function App() {
                   <p className="text-sm text-gray-400 mb-6">
                     If this prompt saved you hours of testing and improved your videos, consider buying me a coffee. Your donation keeps these analyses free!
                   </p>
-                  <button className="w-full flex items-center justify-center gap-2 bg-[#D4AF37] text-black hover:bg-[#F3CE56] hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all px-4 py-3 rounded-lg font-bold">
-                    DONATE $1 OR MORE
-                  </button>
+                  
+                  {/* 3. BOTÃO NA BARRA LATERAL DA PÁGINA DO VÍDEO */}
+                  <a 
+                    href="https://ko-fi.com/synthvisuals" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 bg-[#D4AF37] text-black hover:bg-[#F3CE56] hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all px-4 py-3 rounded-lg font-bold cursor-pointer"
+                  >
+                    $1 OR MORE
+                  </a>
+
                 </div>
               </div>
 
@@ -518,9 +541,17 @@ export default function App() {
             <button className="text-gray-400 hover:text-[#00D4FF] transition-colors text-sm font-medium">Terms</button>
             <button className="text-gray-400 hover:text-[#00D4FF] transition-colors text-sm font-medium">Privacy</button>
           </div>
-          <button className="text-[#D4AF37] hover:text-[#F3CE56] font-semibold text-sm flex items-center gap-2 transition-colors">
+          
+          {/* 4. BOTÃO DO RODAPÉ */}
+          <a 
+            href="https://ko-fi.com/synthvisuals" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-[#D4AF37] hover:text-[#F3CE56] font-semibold text-sm flex items-center gap-2 transition-colors cursor-pointer"
+          >
             <Heart className="w-4 h-4" /> DONATE
-          </button>
+          </a>
+          
         </div>
       </footer>
     </div>
