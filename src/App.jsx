@@ -12,7 +12,7 @@ import {
   Sparkles,
   Coffee,
   ChevronRight, // Novo ícone para o botão Read More
-  BookOpen      // Novo ícone para a leitura
+ 
 } from 'lucide-react';
 
 const CATEGORIES = [
@@ -299,7 +299,7 @@ const GLOSSARY_TERMS = [
 ];
 
 // Adicione este import lá no topo do seu ficheiro, junto com os outros!
-import { HashRouter, Routes, Route, Link, useParams, useLocation, useNavigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 
 // --- COMPONENTE PARA ROLAR PARA O TOPO SEMPRE QUE MUDAR DE PÁGINA ---
 function ScrollToTop() {
