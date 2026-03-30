@@ -314,7 +314,7 @@ export default function App() {
   return (
     <HashRouter>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#000000]...
+      <div className="min-h-screen bg-[#000000] text-[#E0E0E0] font-sans selection:bg-[#00D4FF] selection:text-white flex flex-col">
         
         {/* HEADER GLOBAL */}
         <header className="fixed top-0 w-full z-50 bg-[#121212]/90 backdrop-blur-md border-b border-gray-800">
