@@ -8,7 +8,6 @@ import {
 // Importar os dados do ficheiro separado!
 import { CATEGORIES, VIDEOS, GLOSSARY_TERMS } from './data.js';
 
-
 // --- COMPONENTE INVISÍVEL PARA SEO (SCHEMA MARKUP) ---
 function SchemaMarkup({ data }) {
   return (
@@ -161,7 +160,7 @@ function Home() {
                             <Play className="w-4 h-4" fill="currentColor" /> WATCH
                           </button>
                         ) : (
-                          <Link to={`/video/${video.slug}`} className="bg-[#00D4FF] hover:bg-[#66e5ff] text-black px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
+                          <Link to={`/video/${video.slug || video.id}`} className="bg-[#00D4FF] hover:bg-[#66e5ff] text-black px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
                             WATCH AND VIEW PROMPT
                           </Link>
                         )}
@@ -170,7 +169,7 @@ function Home() {
                     <div className="mt-3">
                       <h3 className="text-white font-medium text-sm line-clamp-2">{video.title}</h3>
                       {category.id !== 'shorts' && (
-                        <Link to={`/video/${video.slug}`} className="mt-2 text-[#00D4FF] hover:text-white text-xs font-semibold tracking-wide flex items-center gap-1 transition-all hover:translate-x-1">
+                        <Link to={`/video/${video.slug || video.id}`} className="mt-2 text-[#00D4FF] hover:text-white text-xs font-semibold tracking-wide flex items-center gap-1 transition-all hover:translate-x-1">
                           WATCH AND VIEW PROMPT <ArrowLeft className="w-3 h-3 rotate-180" />
                         </Link>
                       )}
@@ -182,6 +181,122 @@ function Home() {
           );
         })}
       </div>
+    </div>
+  );
+}
+
+// --- PÁGINA DA LISTA DO GLOSSÁRIO ---
+function GlossaryList() {
+  // DADOS ESTRUTURADOS PARA A LISTA DO GLOSSÁRIO
+  const glossaryListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Cinematic AI Glossary",
+    "description": "A technical guide to the vocabulary used to command AI video models.",
+    "itemListElement": GLOSSARY_TERMS.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.term,
+      "url": `https://www.synthvisuals.space/glossary/${item.id}`
+    }))
+  };
+
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-8 w-full animate-fade-in">
+      {/* INJETAR O SCHEMA AQUI */}
+      <SchemaMarkup data={glossaryListSchema} />
+
+      <div className="text-center mb-16 mt-8">
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Cinematic <span className="text-[#00D4FF]">Glossary</span></h1>
+        <p className="text-gray-400 text-xl max-w-2xl mx-auto">A technical guide to the vocabulary used to command AI video models.</p>
+      </div>
+      <div className="grid md:grid-cols-2 gap-8">
+        {GLOSSARY_TERMS.map((item) => (
+          <div key={item.id} className="bg-[#121212] border border-gray-800 rounded-xl p-8 shadow-lg hover:border-gray-600 transition-all flex flex-col h-full group">
+            <div className="flex-grow">
+              <h2 className="text-2xl font-bold text-white group-hover:text-[#00D4FF] transition-colors mb-4">{item.term}</h2>
+              <span className="inline-block px-3 py-1 mb-6 bg-gray-900 border border-gray-700 rounded-full text-xs font-semibold text-[#D4AF37]">{item.category}</span>
+              <p className="text-gray-400 leading-relaxed mb-8 text-base">{item.definition}</p>
+            </div>
+            <div className="pt-6 border-t border-gray-800 mt-auto">
+              <Link to={`/glossary/${item.id}`} className="flex items-center gap-2 text-[#00D4FF] hover:text-white text-sm font-bold tracking-widest transition-all hover:translate-x-2 w-fit">
+                READ FULL ARTICLE <ChevronRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-16 text-center">
+        <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors font-semibold">
+          <ArrowLeft className="w-5 h-5" /> Back to Video Portfolio
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+// --- PÁGINA DO ARTIGO INDIVIDUAL DO BLOG ---
+function ArticleView() {
+  const { articleId } = useParams();
+  const article = GLOSSARY_TERMS.find(a => a.id === articleId);
+
+  if (!article) return <div className="text-white text-center py-20">Article not found.</div>;
+
+  // DADOS ESTRUTURADOS DINÂMICOS PARA O ARTIGO
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": article.term,
+    "description": article.definition,
+    "author": {
+      "@type": "Organization",
+      "name": "SynthVisuals"
+    },
+    "image": "https://img.youtube.com/vi/wvFRN2nX7WM/maxresdefault.jpg",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SynthVisuals"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.synthvisuals.space/glossary/${article.id}`
+    },
+    "articleBody": article.fullArticle.join(" ")
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-12 w-full animate-fade-in">
+      <SchemaMarkup data={articleSchema} />
+
+      <Link to="/glossary" className="inline-flex items-center gap-2 text-gray-400 hover:text-[#00D4FF] mb-10 transition-colors font-semibold tracking-wide">
+        <ArrowLeft className="w-5 h-5" /> Back to Glossary
+      </Link>
+      <article className="bg-[#121212] border border-gray-800 rounded-2xl p-8 md:p-12 shadow-2xl">
+        <header className="mb-10 border-b border-gray-800 pb-10 text-center">
+          <span className="inline-block px-4 py-1.5 mb-6 bg-gray-900 border border-gray-700 rounded-full text-sm font-bold text-[#D4AF37] tracking-widest">
+            {article.category.toUpperCase()}
+          </span>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">{article.term}</h1>
+          <p className="text-xl text-gray-400 italic font-light max-w-2xl mx-auto">"{article.definition}"</p>
+        </header>
+        <div className="prose prose-invert prose-lg max-w-none text-gray-300">
+          {article.fullArticle.map((paragraph, index) => (
+            <p key={index} className="mb-6 leading-relaxed">{paragraph}</p>
+          ))}
+        </div>
+        <div className="mt-12 bg-black/60 border border-[#00D4FF]/30 rounded-xl p-8 shadow-[0_0_20px_rgba(0,212,255,0.05)]">
+          <h4 className="text-[#00D4FF] text-sm font-bold tracking-widest mb-4 flex items-center gap-2">
+            <Sparkles className="w-5 h-5" /> ACTIONABLE PROMPT ENGINEERING TIP
+          </h4>
+          <p className="text-gray-300 font-mono text-lg bg-black/50 p-4 rounded-lg border border-gray-800">{article.promptTip}</p>
+        </div>
+        <div className="mt-12 pt-8 border-t border-gray-800 text-center flex flex-col items-center justify-center">
+          <p className="text-gray-500 text-sm mb-4">Did this article help you improve your AI generations?</p>
+          <a href="https://ko-fi.com/synthvisuals" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#D4AF37] text-black hover:bg-[#F3CE56] px-8 py-3 rounded-full font-bold text-lg">
+            <Coffee className="w-5 h-5" fill="black" /> SUPPORT SYNTHVISUALS
+          </a>
+        </div>
+      </article>
     </div>
   );
 }
@@ -203,7 +318,7 @@ function VideoView() {
   };
 
   // TRADUTOR DE TEMPO PARA O GOOGLE (Ex: "0:30" vira "PT0M30S")
-  const [minutes, seconds] = video.duration.split(':');
+  const [minutes, seconds] = video.duration ? video.duration.split(':') : ['0', '00'];
   const durationISO = `PT${minutes}M${seconds}S`;
 
   // DADOS ESTRUTURADOS DINÂMICOS PARA O VÍDEO (SEO)
@@ -268,122 +383,6 @@ function VideoView() {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-// --- PÁGINA DA LISTA DO GLOSSÁRIO ---
-function GlossaryList() {
-  // DADOS ESTRUTURADOS PARA A LISTA DO GLOSSÁRIO
-  const glossaryListSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Cinematic AI Glossary",
-    "description": "A technical guide to the vocabulary used to command AI video models.",
-    "itemListElement": GLOSSARY_TERMS.map((item, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "name": item.term,
-      "url": `https://www.synthvisuals.space/glossary/${item.id}`
-    }))
-  };
-
-  return (
-    <div className="max-w-5xl mx-auto px-4 py-8 w-full animate-fade-in">
-      {/* INJETAR O SCHEMA AQUI */}
-      <SchemaMarkup data={glossaryListSchema} />
-      
-      <div className="text-center mb-16 mt-8">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Cinematic <span className="text-[#00D4FF]">Glossary</span></h1>
-        <p className="text-gray-400 text-xl max-w-2xl mx-auto">A technical guide to the vocabulary used to command AI video models.</p>
-      </div>
-      <div className="grid md:grid-cols-2 gap-8">
-        {GLOSSARY_TERMS.map((item) => (
-          <div key={item.id} className="bg-[#121212] border border-gray-800 rounded-xl p-8 shadow-lg hover:border-gray-600 transition-all flex flex-col h-full group">
-            <div className="flex-grow">
-              <h2 className="text-2xl font-bold text-white group-hover:text-[#00D4FF] transition-colors mb-4">{item.term}</h2>
-              <span className="inline-block px-3 py-1 mb-6 bg-gray-900 border border-gray-700 rounded-full text-xs font-semibold text-[#D4AF37]">{item.category}</span>
-              <p className="text-gray-400 leading-relaxed mb-8 text-base">{item.definition}</p>
-            </div>
-            <div className="pt-6 border-t border-gray-800 mt-auto">
-              <Link to={`/glossary/${item.id}`} className="flex items-center gap-2 text-[#00D4FF] hover:text-white text-sm font-bold tracking-widest transition-all hover:translate-x-2 w-fit">
-                READ FULL ARTICLE <ChevronRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-16 text-center">
-        <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors font-semibold">
-          <ArrowLeft className="w-5 h-5" /> Back to Video Portfolio
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-// --- PÁGINA DO ARTIGO INDIVIDUAL DO BLOG ---
-function ArticleView() {
-  const { articleId } = useParams();
-  const article = GLOSSARY_TERMS.find(a => a.id === articleId);
-
-  if (!article) return <div className="text-white text-center py-20">Article not found.</div>;
-
-  // DADOS ESTRUTURADOS DINÂMICOS PARA O ARTIGO
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "TechArticle",
-    "headline": article.term,
-    "description": article.definition,
-    "author": {
-      "@type": "Organization",
-      "name": "SynthVisuals"
-    },
-    "image": "https://img.youtube.com/vi/wvFRN2nX7WM/maxresdefault.jpg",
-    "publisher": {
-      "@type": "Organization",
-      "name": "SynthVisuals"
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://www.synthvisuals.space/glossary/${article.id}`
-    },
-    "articleBody": article.fullArticle.join(" ") 
-  };
-
-  return (
-    <div className="max-w-4xl mx-auto px-4 py-12 w-full animate-fade-in">
-      <SchemaMarkup data={articleSchema} />
-      
-      <Link to="/glossary" className="inline-flex items-center gap-2 text-gray-400 hover:text-[#00D4FF] mb-10 transition-colors font-semibold tracking-wide">
-        <ArrowLeft className="w-5 h-5" /> Back to Glossary
-      </Link>
-      <article className="bg-[#121212] border border-gray-800 rounded-2xl p-8 md:p-12 shadow-2xl">
-        <header className="mb-10 border-b border-gray-800 pb-10 text-center">
-          <span className="inline-block px-4 py-1.5 mb-6 bg-gray-900 border border-gray-700 rounded-full text-sm font-bold text-[#D4AF37] tracking-widest">
-            {article.category.toUpperCase()}
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">{article.term}</h1>
-          <p className="text-xl text-gray-400 italic font-light max-w-2xl mx-auto">"{article.definition}"</p>
-        </header>
-        <div className="prose prose-invert prose-lg max-w-none text-gray-300">
-          {article.fullArticle.map((paragraph, index) => (
-            <p key={index} className="mb-6 leading-relaxed">{paragraph}</p>
-          ))}
-        </div>
-        <div className="mt-12 bg-black/60 border border-[#00D4FF]/30 rounded-xl p-8 shadow-[0_0_20px_rgba(0,212,255,0.05)]">
-          <h4 className="text-[#00D4FF] text-sm font-bold tracking-widest mb-4 flex items-center gap-2">
-            <Sparkles className="w-5 h-5" /> ACTIONABLE PROMPT ENGINEERING TIP
-          </h4>
-          <p className="text-gray-300 font-mono text-lg bg-black/50 p-4 rounded-lg border border-gray-800">{article.promptTip}</p>
-        </div>
-        <div className="mt-12 pt-8 border-t border-gray-800 text-center flex flex-col items-center justify-center">
-          <p className="text-gray-500 text-sm mb-4">Did this article help you improve your AI generations?</p>
-          <a href="https://ko-fi.com/synthvisuals" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#D4AF37] text-black hover:bg-[#F3CE56] px-8 py-3 rounded-full font-bold text-lg">
-            <Coffee className="w-5 h-5" fill="black" /> SUPPORT SYNTHVISUALS
-          </a>
-        </div>
-      </article>
     </div>
   );
 }
