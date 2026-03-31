@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 import { 
   Play, Copy, ArrowLeft, Heart, CheckCircle2, 
   Sparkles, Coffee, ChevronRight
 } from 'lucide-react';
-import { BrowserRouter, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 
-// AQUI ESTÁ A MÁGICA: Puxar os dados do ficheiro data.js!
+// Importar os dados do ficheiro separado!
 import { CATEGORIES, VIDEOS, GLOSSARY_TERMS } from './data.js';
-
 
 // --- COMPONENTE PARA ROLAR PARA O TOPO SEMPRE QUE MUDAR DE PÁGINA ---
 function ScrollToTop() {
   const { pathname } = useLocation();
-  React.useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
@@ -68,7 +67,7 @@ export default function App() {
           </div>
         </footer>
       </div>
-   </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
@@ -131,7 +130,8 @@ function Home() {
                             <Play className="w-4 h-4" fill="currentColor" /> WATCH
                           </button>
                         ) : (
-                          <Link to={`/video/${video.id}`} className="bg-[#00D4FF] hover:bg-[#66e5ff] text-black px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
+                          // LÊ O SLUG AQUI
+                          <Link to={`/video/${video.slug}`} className="bg-[#00D4FF] hover:bg-[#66e5ff] text-black px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
                             WATCH AND VIEW PROMPT
                           </Link>
                         )}
@@ -140,7 +140,8 @@ function Home() {
                     <div className="mt-3">
                       <h3 className="text-white font-medium text-sm line-clamp-2">{video.title}</h3>
                       {category.id !== 'shorts' && (
-                        <Link to={`/video/${video.id}`} className="mt-2 text-[#00D4FF] hover:text-white text-xs font-semibold tracking-wide flex items-center gap-1 transition-all hover:translate-x-1">
+                        // E LÊ O SLUG AQUI
+                        <Link to={`/video/${video.slug}`} className="mt-2 text-[#00D4FF] hover:text-white text-xs font-semibold tracking-wide flex items-center gap-1 transition-all hover:translate-x-1">
                           WATCH AND VIEW PROMPT <ArrowLeft className="w-3 h-3 rotate-180" />
                         </Link>
                       )}
@@ -159,7 +160,8 @@ function Home() {
 // --- PÁGINA DO VÍDEO INDIVIDUAL ---
 function VideoView() {
   const { videoId } = useParams();
-  const video = VIDEOS.find(v => v.id === videoId);
+  // LÊ O SLUG NA BARRA DE ENDEREÇOS
+  const video = VIDEOS.find(v => v.slug === videoId);
   const [copied, setCopied] = useState(false);
 
   if (!video) return <div className="text-white text-center py-20">Video not found.</div>;
