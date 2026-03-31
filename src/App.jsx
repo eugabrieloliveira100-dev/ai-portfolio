@@ -189,8 +189,9 @@ function Home() {
 // --- PÁGINA DO VÍDEO INDIVIDUAL ---
 function VideoView() {
   const { videoId } = useParams();
-  // LÊ O SLUG NA BARRA DE ENDEREÇOS
-  const video = VIDEOS.find(v => v.slug === videoId);
+  
+  // BUSCA À PROVA DE BALA: Tenta achar pelo slug novo OU pelo ID antigo!
+  const video = VIDEOS.find(v => v.slug === videoId || v.id === videoId);
   const [copied, setCopied] = useState(false);
 
   if (!video) return <div className="text-white text-center py-20">Video not found.</div>;
@@ -205,14 +206,14 @@ function VideoView() {
   const [minutes, seconds] = video.duration.split(':');
   const durationISO = `PT${minutes}M${seconds}S`;
 
-  // DADOS ESTRUTURADOS DINÂMICOS PARA O VÍDEO
+  // DADOS ESTRUTURADOS DINÂMICOS PARA O VÍDEO (SEO)
   const videoSchema = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": video.title,
-    "description": video.prompt, // Usamos o prompt como descrição para o SEO!
+    "description": video.prompt,
     "thumbnailUrl": [ video.thumbnail ],
-    "uploadDate": "2024-03-31T12:00:00+00:00", // Data genérica para o Google aceitar
+    "uploadDate": "2024-03-31T12:00:00+00:00",
     "duration": durationISO,
     "embedUrl": `https://www.youtube.com/embed/${video.id}`,
     "publisher": {
