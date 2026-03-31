@@ -13,7 +13,7 @@ const CATEGORIES = [
   { id: 'stylized', name: 'Stylized & Animation', icon: Sparkles },
 ];
 
-const VIDEOS = [
+export const VIDEOS = [
   {
     id: 'ARl-CdRnDBw',
     slug: 'nostalgic-wasteland',
@@ -99,8 +99,8 @@ const VIDEOS = [
     duration: '0:15',
     aspect: '9/16',
     thumbnail: 'https://img.youtube.com/vi/LsKy4LIJhWw/hqdefault.jpg',
-    prompt: '[COLOQUE SEU PROMPT AQUI] Vertical video 9:16, close up, dark fantasy character, atmospheric lighting, detailed textures, cinematic.',
-    analysis: '[COLOQUE SUA ANÁLISE AQUI] Formato vertical focado no centro da tela. A iluminação de recorte separa o personagem do fundo, ideal para prender a atenção no feed do YouTube Shorts.'
+    prompt: 'Vertical video 9:16, close up, dark fantasy character, atmospheric lighting, detailed textures, cinematic.',
+    analysis: 'Formato vertical focado no centro da tela. A iluminação de recorte separa o personagem do fundo, ideal para prender a atenção no feed do YouTube Shorts.'
   },
   {
     id: '8qEFH6J_Yg0',
@@ -110,8 +110,8 @@ const VIDEOS = [
     duration: '0:15',
     aspect: '9/16',
     thumbnail: 'https://img.youtube.com/vi/8qEFH6J_Yg0/hqdefault.jpg',
-    prompt: '[COLOQUE SEU PROMPT AQUI] 9:16 aspect ratio, medieval knight, dramatic pose, snow, hyper-realistic, 8k.',
-    analysis: '[COLOQUE SUA ANÁLISE AQUI] Ao manter a ação centralizada, evitamos que a interface do YouTube Shorts (botões de curtir/comentar do lado direito) cubra os detalhes importantes da cena.'
+    prompt: '9:16 aspect ratio, medieval knight, dramatic pose, snow, hyper-realistic, 8k.',
+    analysis: 'Ao manter a ação centralizada, evitamos que a interface do YouTube Shorts (botões de curtir/comentar do lado direito) cubra os detalhes importantes da cena.'
   },
   {
     id: 'TGg6QvpOPFk',
@@ -121,8 +121,8 @@ const VIDEOS = [
     duration: '0:15',
     aspect: '9/16',
     thumbnail: 'https://img.youtube.com/vi/TGg6QvpOPFk/hqdefault.jpg',
-    prompt: '[COLOQUE SEU PROMPT AQUI] Vertical shot, dark alleyway, mysterious figure approaching, horror lighting, photorealistic.',
-    analysis: '[COLOQUE SUA ANÁLISE AQUI] O enquadramento em 9:16 aumenta a sensação de proximidade e intimidade com o perigo, perfeito para cenas de suspense.'
+    prompt: 'Vertical shot, dark alleyway, mysterious figure approaching, horror lighting, photorealistic.',
+    analysis: 'O enquadramento em 9:16 aumenta a sensação de proximidade e intimidade com o perigo, perfeito para cenas de suspense.'
   },
   {
     id: 'qPvrYUvZhaw',
@@ -132,8 +132,8 @@ const VIDEOS = [
     duration: '0:15',
     aspect: '9/16',
     thumbnail: 'https://img.youtube.com/vi/qPvrYUvZhaw/hqdefault.jpg',
-    prompt: '[COLOQUE SEU PROMPT AQUI] 9:16 format, tracking shot through a burning medieval village, intense fire, cinematic.',
-    analysis: '[COLOQUE SUA ANÁLISE AQUI] O movimento de câmera no formato vertical precisa ser mais lento para não causar desorientação. A IA lidou com a profundidade do fogo perfeitamente aqui.'
+    prompt: '9:16 format, tracking shot through a burning medieval village, intense fire, cinematic.',
+    analysis: 'O movimento de câmera no formato vertical precisa ser mais lento para não causar desorientação. A IA lidou com a profundidade do fogo perfeitamente aqui.'
   },
   {
     id: '2G0QSG9d8I0',
@@ -143,8 +143,8 @@ const VIDEOS = [
     duration: '0:15',
     aspect: '9/16',
     thumbnail: 'https://img.youtube.com/vi/2G0QSG9d8I0/hqdefault.jpg',
-    prompt: '[COLOQUE SEU PROMPT AQUI] Vertical video, dynamic action shot, dark fantasy soldiers, slow motion, detailed armor.',
-    analysis: '[COLOQUE SUA ANÁLISE AQUI] O uso de câmera lenta em Shorts é um excelente "hook" (gancho) para prender o usuário nos primeiros 3 segundos do vídeo.'
+    prompt: 'Vertical video, dynamic action shot, dark fantasy soldiers, slow motion, detailed armor.',
+    analysis: 'O uso de câmera lenta em Shorts é um excelente "hook" (gancho) para prender o usuário nos primeiros 3 segundos do vídeo.'
   },
   {
     id: 'mXLh8d3WsYA', 
