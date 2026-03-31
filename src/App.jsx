@@ -8,6 +8,17 @@ import {
 // Importar os dados do ficheiro separado!
 import { CATEGORIES, VIDEOS, GLOSSARY_TERMS } from './data.js';
 
+
+// --- COMPONENTE INVISÍVEL PARA SEO (SCHEMA MARKUP) ---
+function SchemaMarkup({ data }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 // --- COMPONENTE PARA ROLAR PARA O TOPO SEMPRE QUE MUDAR DE PÁGINA ---
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -76,8 +87,28 @@ function Home() {
   const [isPlayingHero, setIsPlayingHero] = useState(false); 
   const heroVideoId = "wvFRN2nX7WM"; 
 
+  // DADOS ESTRUTURADOS PARA O GOOGLE (SCHEMA.ORG)
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AI Prompts | SynthVisuals",
+    "url": "https://www.synthvisuals.space/",
+    "description": "Portfolio of fully AI-generated Dark Fantasy cinematic journeys, prompt engineering, and visual storytelling.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SynthVisuals",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://img.youtube.com/vi/wvFRN2nX7WM/maxresdefault.jpg"
+      }
+    }
+  };
+
   return (
     <div>
+      {/* INJEÇÃO DO SCHEMA AQUI */}
+      <SchemaMarkup data={homeSchema} />
+
       <section className="relative w-full max-w-7xl mx-auto px-4 py-8">
         <div className="relative w-full aspect-video bg-[#121212] rounded-xl overflow-hidden border border-gray-800 shadow-[0_0_30px_rgba(0,212,255,0.1)] group">
           {isPlayingHero ? (
@@ -130,7 +161,6 @@ function Home() {
                             <Play className="w-4 h-4" fill="currentColor" /> WATCH
                           </button>
                         ) : (
-                          // LÊ O SLUG AQUI
                           <Link to={`/video/${video.slug}`} className="bg-[#00D4FF] hover:bg-[#66e5ff] text-black px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
                             WATCH AND VIEW PROMPT
                           </Link>
@@ -140,7 +170,6 @@ function Home() {
                     <div className="mt-3">
                       <h3 className="text-white font-medium text-sm line-clamp-2">{video.title}</h3>
                       {category.id !== 'shorts' && (
-                        // E LÊ O SLUG AQUI
                         <Link to={`/video/${video.slug}`} className="mt-2 text-[#00D4FF] hover:text-white text-xs font-semibold tracking-wide flex items-center gap-1 transition-all hover:translate-x-1">
                           WATCH AND VIEW PROMPT <ArrowLeft className="w-3 h-3 rotate-180" />
                         </Link>
@@ -172,8 +201,35 @@ function VideoView() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // TRADUTOR DE TEMPO PARA O GOOGLE (Ex: "0:30" vira "PT0M30S")
+  const [minutes, seconds] = video.duration.split(':');
+  const durationISO = `PT${minutes}M${seconds}S`;
+
+  // DADOS ESTRUTURADOS DINÂMICOS PARA O VÍDEO
+  const videoSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": video.title,
+    "description": video.prompt, // Usamos o prompt como descrição para o SEO!
+    "thumbnailUrl": [ video.thumbnail ],
+    "uploadDate": "2024-03-31T12:00:00+00:00", // Data genérica para o Google aceitar
+    "duration": durationISO,
+    "embedUrl": `https://www.youtube.com/embed/${video.id}`,
+    "publisher": {
+      "@type": "Organization",
+      "name": "SynthVisuals",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://img.youtube.com/vi/wvFRN2nX7WM/maxresdefault.jpg"
+      }
+    }
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 w-full animate-fade-in">
+      {/* INJETAR O SCHEMA DO VÍDEO AQUI */}
+      <SchemaMarkup data={videoSchema} />
+
       <Link to="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors">
         <ArrowLeft className="w-5 h-5" /> Back to Portfolio
       </Link>
@@ -217,8 +273,25 @@ function VideoView() {
 
 // --- PÁGINA DA LISTA DO GLOSSÁRIO ---
 function GlossaryList() {
+  // DADOS ESTRUTURADOS PARA A LISTA DO GLOSSÁRIO
+  const glossaryListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Cinematic AI Glossary",
+    "description": "A technical guide to the vocabulary used to command AI video models.",
+    "itemListElement": GLOSSARY_TERMS.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.term,
+      "url": `https://www.synthvisuals.space/glossary/${item.id}`
+    }))
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 w-full animate-fade-in">
+      {/* INJETAR O SCHEMA AQUI */}
+      <SchemaMarkup data={glossaryListSchema} />
+      
       <div className="text-center mb-16 mt-8">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Cinematic <span className="text-[#00D4FF]">Glossary</span></h1>
         <p className="text-gray-400 text-xl max-w-2xl mx-auto">A technical guide to the vocabulary used to command AI video models.</p>
@@ -255,8 +328,32 @@ function ArticleView() {
 
   if (!article) return <div className="text-white text-center py-20">Article not found.</div>;
 
+  // DADOS ESTRUTURADOS DINÂMICOS PARA O ARTIGO
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": article.term,
+    "description": article.definition,
+    "author": {
+      "@type": "Organization",
+      "name": "SynthVisuals"
+    },
+    "image": "https://img.youtube.com/vi/wvFRN2nX7WM/maxresdefault.jpg",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SynthVisuals"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.synthvisuals.space/glossary/${article.id}`
+    },
+    "articleBody": article.fullArticle.join(" ") 
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 w-full animate-fade-in">
+      <SchemaMarkup data={articleSchema} />
+      
       <Link to="/glossary" className="inline-flex items-center gap-2 text-gray-400 hover:text-[#00D4FF] mb-10 transition-colors font-semibold tracking-wide">
         <ArrowLeft className="w-5 h-5" /> Back to Glossary
       </Link>
