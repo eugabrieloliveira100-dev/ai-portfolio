@@ -14,6 +14,42 @@ const CATEGORIES = [
 ];
 
 export const VIDEOS = [
+
+{
+    id: '9Muy_x_NTEI',
+    slug: 'the-relic-portal',
+    categoryId: 'cinematic',
+    title: 'The Relic Portal',
+    duration: '0:30',
+    aspect: '16/9',
+    thumbnail: 'https://img.youtube.com/vi/9Muy_x_NTEI/maxresdefault.jpg',
+    prompt: 'A central, first-person shot of a person shows only his masculine hands, which have a natural texture, unwrinkled, with discreet pores and subtle signs of use, but without deformities. The fingers are proportionate and slightly adjusted. The hands are slightly dirty, as if they had been working for hours or even days. The discreet hairs on the backs create a contrast with the soft glow of the light, reinforcing the human aspect. But the main focus is on an antique piece of furniture, a kind of dark wooden cabinet, marked by time, as if it belonged to another era. But as you get closer, it\'s impossible to ignore the presence of exposed copper gears, turning slowly with a soft metallic sound, like a gigantic clock that never stops.\n\nVerticalized glass tubes, similar to those of valve radios, emit a pulsating amber glow, bringing the machinery to life. Small bronze levers, porcelain buttons, and dials with thin hands occupy the front, all engraved with strange symbols that recall both mathematical formulas and arcane inscriptions.\n\nIn the center, a worn leather armchair sits, inviting—or imprisoning—whoever dares to use it. The armrests have small built-in cranks, and behind the seat, a pendulum oscillates, releasing subtle sparks, as if measuring not only time but also reality.\n\nThe smell is a mixture of old wood, machine oil, and ozone, as if the machine were alive, breathing amidst invisible gears and currents.\n\nWhen activated, metal rings begin to rotate around the armchair, like a moving astrolabe. The cabinet emits a deep sound, almost like a mechanical chant, while lights run through the tubes and the wood seems to vibrate, about to break into particles, and small currents emerge from small tubes in the center of the machine.\n\nIt\'s not just a machine. It\'s a portal disguised as a relic, made to deceive time and the human senses. The depth of field is deep, with a traveling camera and dark light, in a somewhat humid and solitary environment, which evokes mystery and some dark power, as if secrets were kept in that place, with a reddish light surrounding the entire room.',
+    analysis: 'This prompt is a brilliant example of "synesthetic prompting" — engineering sensory atmosphere. It beautifully blends steampunk elements ("copper gears," "valve radios," "bronze levers") with dark fantasy ("arcane inscriptions," "reddish light"). What makes this prompt exceptional is how it directs the AI to simulate non-visual senses, such as sound ("soft metallic sound," "mechanical chant") and even smell ("old wood, machine oil, and ozone"). While AI video models cannot generate scent, including such subjective descriptions forces the engine to drastically adjust lighting, color grading (like the "pulsating amber glow"), and environmental particle effects ("subtle sparks," "small currents") to match that exact mood. The dynamic transition from a static relic to an active portal ("metal rings begin to rotate") ensures a highly engaging and cinematic motion sequence.'
+  },
+  {
+    id: '_AWdsh-7nSI',
+    slug: 'ancient-egypt-pov',
+    categoryId: 'world',
+    title: 'Ancient Egypt POV',
+    duration: '0:15',
+    aspect: '16/9',
+    thumbnail: 'https://img.youtube.com/vi/_AWdsh-7nSI/maxresdefault.jpg',
+    prompt: 'First-person center shot. The camera reveals only the character\'s male hands, positioned naturally upward as he walks, without ever raising them awkwardly. The skin has a realistic texture, slightly marked by discreet pores and subtle signs of fatigue, as if it were someone who has worked for hours or even days. The fingers are proportionate, slightly stiff, with short, clean nails, but small patches of dirt on the skin suggest physical wear. Discreet hairs on the backs reflect the ambient light, creating a contrast with the pallor of the skin beneath the cold, artificial glow.\n\nThe character is walking through the bustling streets of Ancient Egypt. Around him, merchants negotiate at wooden counters, traders display fabrics and spices, and priests in elaborate robes weave through the crowd. The atmosphere is dense, filled with voices, footsteps, and the distant sound of wind instruments. On the horizon, the pyramids rise imposingly, partially shrouded in desert dust.\n\nThe depth of field is profound, allowing every detail—from the hands in the foreground to the grandeur of the pyramids in the background—to be perceived clearly, creating a sense of total immersion in space and time.',
+    analysis: 'This prompt excels at establishing immersion through forced perspective and multi-layered worldbuilding. By specifying a "first-person center shot" focusing purely on the "character\'s male hands", the viewer is immediately placed into the protagonist\'s shoes. The microscopic details of the hands—"discreet pores," "subtle signs of fatigue," "small patches of dirt"—anchor the scene in visceral realism. Simultaneously, the macro environment is richly populated with dynamic elements ("merchants negotiate," "priests weave") and atmospheric depth ("desert dust," "pyramids rise imposingly"). The explicit direction for a "profound depth of field" ensures the AI renders both the hyper-detailed foreground hands and the epic background architecture in sharp focus, creating a monumental cinematic scale.'
+  },
+  {
+    id: '-QWxcqoavYw',
+    slug: 'the-white-room-pov',
+    categoryId: 'cinematic',
+    title: 'The White Room POV',
+    duration: '0:15',
+    aspect: '16/9',
+    thumbnail: 'https://img.youtube.com/vi/-QWxcqoavYw/maxresdefault.jpg',
+    prompt: 'First-person center shot of a completely white, minimalist room, devoid of furniture or objects. The walls and ceiling are white, reflecting the artificial light that fills the space. At the back of the room, a single door stands out, contrasting with the uniformity of the surfaces.\n\nThe camera shows only the character\'s male hands, projected forward as he walks slowly toward the door. The hands have a natural texture, skin lightly marked by discreet pores and subtle signs of prolonged use, as if someone had been working for hours or days. The fingers are proportionate, slightly stiff, with short, clean nails. Small amounts of dirt accumulate on the skin, reinforcing the appearance of wear. On the back, fine hairs gently reflect the cool light of the room, creating a contrast with the pallor of the skin under the artificial lighting.\n\nThe door, the only break in that aseptic and uniform space, becomes the point of narrative tension. The depth of field is deep, keeping both the hands and the door sharp, heightening the sense of anticipation and estrangement.',
+    analysis: 'A masterclass in building psychological tension through minimalism and contrast. By creating a "completely white, minimalist room" and an "aseptic and uniform space," the prompt forces the AI to rely entirely on lighting and the central subject to carry the visual weight. The gritty, highly textured hands ("discreet pores," "dirt accumulate," "fine hairs") stand out drastically against the sterile environment, immediately implying that the character does not belong there. Defining the solitary door as the "point of narrative tension" and dictating a "deep depth of field" guides the AI to frame the shot like a psychological thriller, drawing the viewer\'s eye directly to the inevitable destination.'
+  },
+  
+  
   {
     id: 'ARl-CdRnDBw',
     slug: 'nostalgic-wasteland',
