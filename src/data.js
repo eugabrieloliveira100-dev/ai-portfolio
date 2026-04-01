@@ -16,6 +16,51 @@ const CATEGORIES = [
 export const VIDEOS = [
 
 {
+    id: 'vVgTX37FuLU',
+    slug: 'the-anxious-operator',
+    categoryId: 'cinematic',
+    title: 'The Anxious Operator',
+    duration: '0:15',
+    aspect: '16/9',
+    thumbnail: 'https://img.youtube.com/vi/vVgTX37FuLU/maxresdefault.jpg',
+    prompt: 'First-person of a man, only his hands can be seen, in front of him, a large amount of technological cables, a dark environment, with lamps on the wall, the place is somewhat humid, as a central plane a machine with green letters going up and down on the screen, with a deep depth of field and a central plane, in addition to having the machine as the main focus, a somewhat dark and evil light, the man in first person seems anxious and begins to press a red button that is on the machine, inside the machine\'s screen, there is the somewhat distorted image of a man looking at him, something evil.',
+    analysis: 'This prompt excels in building claustrophobic, psychological dread by merging the immersive "first-person" perspective with eerie environmental cues. The lighting design—specifically requested as "dark and evil light"—works in tandem with the "humid" environment to create a palpable sense of discomfort. The narrative progression of the anxious character pressing the "red button" to reveal a "distorted image" on the monitor demonstrates how AI can be directed to create a thriller-esque reveal or jump-scare setup within a single, continuous shot.'
+  },
+  {
+    id: '6Kl9KPdL6g4',
+    slug: 'the-wooden-time-machine',
+    categoryId: 'world',
+    title: 'The Wooden Time Machine',
+    duration: '0:15',
+    aspect: '16/9',
+    thumbnail: 'https://img.youtube.com/vi/6Kl9KPdL6g4/maxresdefault.jpg',
+    prompt: 'First-person of a man, only his hands can be seen, in front of him, a technological machine, with a very large screen and some buttons that are attached to the front, as if they were small mechanical buttons, as if it were a time machine, the machine is the main focus, the camera is traveling, having a general plan of the scene, with a deep depth of field and some lights from lamps that are in the corner of that room, the environment is dark and somewhat gloomy, as if it were a very old room, with old brown wooden walls. The machine\'s view is frontal, there is a green light being emitted from the screen and several codes going up and down on the screen. The man approaches the machine, presses a red button, the machine opens and inside the machine, there is a place for him to sit, with a technological helmet for him to put on his head, but this helmet is made of rustic wood, with an old appearance, with several cables connected to it.',
+    analysis: 'A masterclass in retro-futuristic worldbuilding. By juxtaposing high-tech elements like a "green light" and "codes going up and down" with incredibly analog textures like "old brown wooden walls" and a "rustic wood" helmet, the prompt forces the AI engine to blend contrasting aesthetic concepts into a cohesive steampunk-adjacent reality. Furthermore, dictating a complex sequence of events—the man approaching, pressing a button, the machine opening, and revealing an intricate interior—pushes the temporal consistency limits of the video model to its absolute peak.'
+  },
+  {
+    id: 'Lypq2JiWqr4',
+    slug: 'the-gloomy-time-machine',
+    categoryId: 'world',
+    title: 'The Gloomy Time Machine',
+    duration: '0:15',
+    aspect: '16/9',
+    thumbnail: 'https://img.youtube.com/vi/Lypq2JiWqr4/maxresdefault.jpg',
+    prompt: 'First-person of a man, only his hands can be seen, in front of him, a technological machine, with a very large screen and some buttons that are attached to the front, as if they were small mechanical buttons, as if it were a time machine, the machine is the main focus, the camera is traveling, having a general plan of the scene, with a deep depth of field and some lights from lamps that are in the corner of that room, the environment is dark and somewhat gloomy, as if it were a very old room, with old brown wooden walls.',
+    analysis: 'Serving as a perfect cinematic establishing shot, this prompt prioritizes spatial awareness and mood over complex action. The use of a "traveling camera" combined with a "deep depth of field" ensures the viewer fully absorbs the "gloomy" atmosphere and the textural details of the "old brown wooden walls" before focusing entirely on the mechanics of the machine. The deliberate placement of practical lighting ("lamps that are in the corner of that room") guides the engine\'s volumetric lighting calculations, resulting in a scene incredibly rich in shadow and mystery.'
+  },
+  {
+    id: 'mw9aEoQMisw',
+    slug: '80s-office-horror',
+    categoryId: 'cinematic',
+    title: '80s Office Horror',
+    duration: '0:15',
+    aspect: '16/9',
+    thumbnail: 'https://img.youtube.com/vi/mw9aEoQMisw/maxresdefault.jpg',
+    prompt: 'A wide shot with a deep depth of field, using a tracking camera, focuses primarily on a young woman in an office at night, sitting in a black office chair. The atmosphere around her is suspenseful and reminiscent of 1980s horror. She\'s dressed in white and wears black office pants. In front of her is a computer turned on, and a white corded phone sits next to her. The woman looks a little scared and is looking around. Her face has a natural texture, without wrinkles, and her hands are proportionate.',
+    analysis: 'A brilliant execution of period-specific suspense. By explicitly invoking a "1980s horror" atmosphere, the prompt sets a strong stylistic baseline for the rendering engine. The "wide shot" and "tracking camera" mimic classic thriller cinematography, allowing the environment—complete with era-appropriate props like a "white corded phone"—to frame the subject\'s isolation. Directing the actor\'s performance ("looks a little scared", "looking around") combined with high-fidelity texture requests ("natural texture, without wrinkles") ensures the character conveys genuine, deeply human anxiety.'
+  },
+
+{
     id: '9Muy_x_NTEI',
     slug: 'the-relic-portal',
     categoryId: 'cinematic',
