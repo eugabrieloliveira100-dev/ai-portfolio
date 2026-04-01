@@ -154,25 +154,17 @@ function Home() {
                     <div className={`relative w-full rounded-lg overflow-hidden bg-[#121212] border border-gray-800 group-hover:border-[#00D4FF]/50 transition-colors ${video.aspect === '9/16' ? 'aspect-[9/16]' : 'aspect-video'}`}>
                       <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
                       <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 text-xs font-mono rounded">{video.duration}</div>
-                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        {category.id === 'shorts' ? (
-                          <button onClick={() => window.open(`https://www.youtube.com/shorts/${video.id}`, '_blank')} className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all flex items-center gap-2">
-                            <Play className="w-4 h-4" fill="currentColor" /> WATCH
-                          </button>
-                        ) : (
-                          <Link to={`/video/${video.slug || video.id}`} className="bg-[#00D4FF] hover:bg-[#66e5ff] text-black px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
-                            WATCH AND VIEW PROMPT
-                          </Link>
-                        )}
+                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <Link to={`/video/${video.slug || video.id}`} className="bg-[#00D4FF] hover:bg-[#66e5ff] text-black px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all text-center">
+                          {category.id === 'shorts' ? 'READ CONCEPT ANALYSIS' : 'WATCH AND VIEW PROMPT'}
+                        </Link>
                       </div>
                     </div>
                     <div className="mt-3">
                       <h3 className="text-white font-medium text-sm line-clamp-2">{video.title}</h3>
-                      {category.id !== 'shorts' && (
-                        <Link to={`/video/${video.slug || video.id}`} className="mt-2 text-[#00D4FF] hover:text-white text-xs font-semibold tracking-wide flex items-center gap-1 transition-all hover:translate-x-1">
-                          WATCH AND VIEW PROMPT <ArrowLeft className="w-3 h-3 rotate-180" />
-                        </Link>
-                      )}
+                      <Link to={`/video/${video.slug || video.id}`} className="mt-2 text-[#00D4FF] hover:text-white text-xs font-semibold tracking-wide flex items-center gap-1 transition-all hover:translate-x-1">
+                        {category.id === 'shorts' ? 'READ CONCEPT ANALYSIS' : 'WATCH AND VIEW PROMPT'} <ArrowLeft className="w-3 h-3 rotate-180" />
+                      </Link>
                     </div>
                   </div>
                 ))}
