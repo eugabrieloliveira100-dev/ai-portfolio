@@ -1,9 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://synthvisuals.space/</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.synthvisuals.space/</loc>
     <priority>1.0</priority>
   </url>
+
+  <url>
+    <loc>https://www.synthvisuals.space/glossary</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.synthvisuals.space/glossary/chiaroscuro</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.synthvisuals.space/glossary/subsurface-scattering</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.synthvisuals.space/glossary/dolly-in</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.synthvisuals.space/glossary/volumetric-lighting</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url><loc>https://www.synthvisuals.space/video/the-anxious-operator</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-wooden-time-machine</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-gloomy-time-machine</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/80s-office-horror</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-relic-portal</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/ancient-egypt-pov</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-white-room-pov</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/nostalgic-wasteland</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-weary-outlaw</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-proud-king</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-hunted-criminal</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/grim-reality</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-anxious-young-king</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-cosmic-entity</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/vertical-cinematic-the-crow</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/vertical-fantasy-the-knight</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/vertical-thriller-the-shadows</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/vertical-world-burning-town</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/vertical-action-the-clash</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-soldier-king</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/cyberpunk-metropolis</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-condemned</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/nuclear-dawn</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/acceptance</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/retro-anime-journey</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-hunted</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/o-viajante-do-tempo</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-inventor</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-waiting</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-haunted-forest</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/enchanted-wonderland</loc><priority>0.8</priority></url>
+  <url><loc>https://www.synthvisuals.space/video/the-monumental-hall</loc><priority>0.8</priority></url>
 </urlset>
